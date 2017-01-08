@@ -1,10 +1,9 @@
-package practise.springBoot.model;
+package practise.springBoot.entities;
 
 import java.io.Serializable;
 
 import javax.persistence.*;
 
-import java.sql.Time;
 import java.util.Date;
 
 
@@ -19,14 +18,13 @@ public class Note extends GenericEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private Integer id;
 
+	@Column(name="description")
 	private String description;
 
-	private float period;
-
-	@Column(name="preferred_working_hour_per_day")
-	private Time preferredWorkingHourPerDay;
+	@Column(name="period")
+	private double period;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="start_date")
@@ -34,16 +32,17 @@ public class Note extends GenericEntity implements Serializable {
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
+	@JoinColumn(name="user")
 	private User user;
 
 	public Note() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -51,24 +50,16 @@ public class Note extends GenericEntity implements Serializable {
 		return this.description;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDescription(String desccription) {
+		this.description = desccription;
 	}
 
-	public float getPeriod() {
+	public double getPeriod() {
 		return this.period;
 	}
 
-	public void setPeriod(float period) {
+	public void setPeriod(double period) {
 		this.period = period;
-	}
-
-	public Time getPreferredWorkingHourPerDay() {
-		return this.preferredWorkingHourPerDay;
-	}
-
-	public void setPreferredWorkingHourPerDay(Time preferredWorkingHourPerDay) {
-		this.preferredWorkingHourPerDay = preferredWorkingHourPerDay;
 	}
 
 	public Date getStartDate() {
@@ -83,8 +74,8 @@ public class Note extends GenericEntity implements Serializable {
 		return this.user;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(User userBean) {
+		this.user = userBean;
 	}
 
 }

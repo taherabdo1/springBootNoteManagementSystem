@@ -6,18 +6,17 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import practise.springBoot.model.User;
-import dao.UserDao;
+import practise.springBoot.entities.User;
 import resources.RestConfig;
 
 @Configuration
-@Import({ RestConfig.class, UserDao.class, User.class })
+@Import({ RestConfig.class, User.class })
 @SpringBootApplication
 
 //this is the default, spring boot will scan all the sub-packages to find
 //entities and beans, otherwise use this annotatioon to address the
 //basepackages you need to scan
-@ComponentScan(basePackages = "practise.springBoot.model")
+@ComponentScan(basePackages = "")
 public class Application {
 
 	public static void main(String[] args) {

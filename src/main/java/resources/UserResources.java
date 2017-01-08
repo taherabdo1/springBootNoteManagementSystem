@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import dao.UserDao;
+import practise.springBoot.dao.UserRepository;
 
 
 @RestController
@@ -13,11 +13,10 @@ import dao.UserDao;
 public class UserResources {
 
 	@Autowired
-	UserDao userDao;
+	UserRepository userRepository;
 	
 	@RequestMapping(method = RequestMethod.GET, value="/test")
-	public String testService(){
-		
-		return "test successfully, found "+userDao.selectAll().size()+" users";
+	public String testService(){		
+		return "test successfully, found "+userRepository.count();
 	}
 }
